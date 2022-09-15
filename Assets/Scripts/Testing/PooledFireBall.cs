@@ -6,6 +6,8 @@ namespace JuniorProject_01
 {
     public class PooledFireBall : MonoBehaviour
     {
+        private bool ready = false;
+
         //damage
         private float damage = 5f;
         private float maxDamage = 25f;
@@ -39,6 +41,7 @@ namespace JuniorProject_01
 
         private void OnDisable()
         {
+            ready = false;
             BackToDefoult();
         }
 
@@ -84,6 +87,7 @@ namespace JuniorProject_01
 
         public void Fire(Vector3 direction)
         {
+            ready = true;
             rb.useGravity = true;
             isGrowing = false;
             rb.AddForce(direction * velocity);
@@ -92,14 +96,17 @@ namespace JuniorProject_01
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.GetComponent<Distructuble>() != null)
+            if (ready)
             {
-                collision.gameObject.GetComponent<Distructuble>().GetDamage(damage);
+                if (collision.gameObject.GetComponent<Distructuble>() != null)
+                {
+                    collision.gameObject.GetComponent<Distructuble>().GetDamage(damage);
+                }
+
+                Debug.Log(collision.gameObject.tag /*+ ". Damsge -  " + damage + ". Size - " + size*/);
+
+                gameObject.SetActive(false);
             }
-
-            Debug.Log(collision.gameObject.tag + ". Damsge -  " + damage + ". Size - " + size);
-
-            gameObject.SetActive(false);
         }
 
 

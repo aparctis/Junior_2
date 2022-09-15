@@ -31,6 +31,7 @@ namespace JuniorProject_01
                 proj.GetComponent<PooledFireBall>().SetDirection(atackDirection);
 
             }
+            Debug.Log(proj.transform.position);
 
         }
 

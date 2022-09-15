@@ -29,7 +29,7 @@ namespace JuniorProject_01
 
         //jumps
         private bool inAir = false;
-        private int jumpsCount = 2;
+        private int jumpsCount = 1;
         private int curentJumpCount;
 
         [SerializeField] private WallChecker wallChecker;

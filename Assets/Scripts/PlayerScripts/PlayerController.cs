@@ -7,7 +7,7 @@ using TMPro;
 
 namespace JuniorProject_01
 {
-    public enum WeaponeType { fireball, stone}
+    public enum WeaponeType { fire, earth, water, wind}
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] private Player_moves moves;
@@ -32,6 +32,22 @@ namespace JuniorProject_01
         private Vector3 checkPoint;
         [SerializeField] private GameObject gameOverScreen;
         [SerializeField] private GameObject levelDoneScreen;
+
+        //runes
+        [SerializeField] private Button but_fire;
+        [SerializeField] private Button but_water;
+        [SerializeField] private Button but_wind;
+        [SerializeField] private Button but_earth;
+
+        [SerializeField]private bool fireAble;
+        [SerializeField]private bool waterAble;
+        [SerializeField] private bool windAble;
+        [SerializeField] private bool earthAble;
+
+        private int fire_rune_count;
+        private int water_rune_count;
+        private int earth_rune_count;
+        private int wind_rune_count;
 
 
         private void Start()
@@ -61,7 +77,7 @@ namespace JuniorProject_01
         {
             CheckAtackDirection();
             moves.moveAble = false;
-            if (weapone == WeaponeType.fireball)
+            if (fireAble)
             {
                 proj = Instantiate(fireball, castPoint.position, Quaternion.identity) as GameObject;
                 proj.GetComponent<Fireball>().SetDirection(atackDirection);
@@ -72,7 +88,7 @@ namespace JuniorProject_01
         {
             moves.moveAble = true;
 
-            if (weapone == WeaponeType.fireball)
+            if (fireAble)
             {
                 if (proj != null && proj.GetComponent<Fireball>() != null)
                 {
@@ -80,6 +96,40 @@ namespace JuniorProject_01
 
                 }
             }
+        }
+
+        private void ButtonCheck()
+        {
+            but_fire.interactable = fireAble;
+            but_water.interactable = waterAble;
+            but_wind.interactable = windAble;
+            but_earth.interactable = earthAble;
+
+        }
+
+        public void AddCrystal(WeaponeType type)
+        {
+            switch (type)
+            {
+                case WeaponeType.fire:
+                    fireAble = true;
+                    ButtonCheck();
+                    break;
+                case WeaponeType.water:
+                    waterAble = true;
+                    ButtonCheck();
+                    break;
+                case WeaponeType.earth:
+                    earthAble = true;
+                    ButtonCheck();
+                    break;
+                case WeaponeType.wind:
+                    windAble = true;
+                    ButtonCheck();
+                    break;
+            }
+
+            ButtonCheck();
         }
 
 
@@ -154,6 +204,9 @@ namespace JuniorProject_01
         {
             levelDoneScreen.SetActive(true);
         }
+
+
+
 
     }
 }
