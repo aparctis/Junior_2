@@ -10,10 +10,14 @@ namespace JuniorProject_01
 
         [SerializeField] private Player_moves moves;
 
+        [SerializeField] private Animator anim;
+
         private void FixedUpdate()
         {
             if (joystick.Direction.x != 0)
             {
+                if (anim.GetBool("isRun") != true) anim.SetBool("isRun", true);
+
                 if (joystick.Direction.x > 0)
                 {
                     moves.WalkRight();
@@ -27,6 +31,10 @@ namespace JuniorProject_01
 
             }
 
+            else
+            {
+                anim.SetBool("isRun", false);
+            }
         }
     }
 }

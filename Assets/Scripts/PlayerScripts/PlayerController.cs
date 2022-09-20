@@ -18,6 +18,12 @@ namespace JuniorProject_01
         [SerializeField] private float maxHeatPoints = 100;
         [SerializeField ]private int lives = 1;
 
+        //bonus shield
+        private bool gatShield = false;
+        private float shieldTime = 0f;
+        private float resist = 0f;
+        private float maxResist = 0.9f;
+
         //UI
         [SerializeField]private Slider _hpSlider;
 
@@ -100,6 +106,38 @@ namespace JuniorProject_01
             transform.position = checkPoint;
 
         }
+
+        //bonuses
+        public void GetShield(float shieldResist, float bonustime)
+        {
+            if (gatShield == false)
+            {
+                gatShield = true;
+                resist = shieldResist;
+                shieldTime = bonustime;
+            }
+
+            else
+            {
+                shieldTime += bonustime;
+                if (shieldResist > resist)
+                {
+                    resist = shieldResist;
+                }
+            }
+        }
+
+        private void DropShild()
+        {
+            gatShield = false;
+            resist = 0;
+        }
+
+        private void ShieldTimer()
+        {
+
+        }
+
 
         //UI
         private void HpSliderUpdate()

@@ -12,6 +12,10 @@ namespace JuniorProject_01
         [SerializeField] private float velocityToDamage = 25f;
 
 
+        //animations
+        [SerializeField] private Animator anim;
+        private bool isRuning = false;
+
         //RidgidBody
         [HideInInspector]public Rigidbody rb;
 /*        [SerializeField] private float thrust;
@@ -100,6 +104,7 @@ namespace JuniorProject_01
                 transform.Translate(Vector3.right * (moveSpeed * Time.fixedDeltaTime));
 
             }
+            if (!isRuning) isRuning = true;
         }
         public void WalkLeft()
         {
@@ -109,6 +114,8 @@ namespace JuniorProject_01
                 transform.Translate(Vector3.right * (-moveSpeed * Time.fixedDeltaTime));
 
             }
+            if (!isRuning) isRuning = true;
+
         }
 
         //DEBUG
@@ -166,8 +173,17 @@ namespace JuniorProject_01
 
         private void TouchCheck()
         {
-            if (moveLeft) WalkLeft();
-            if (moveRight) WalkRight();
+            if (moveLeft)
+            {
+                WalkLeft();
+
+            }
+            else if (moveRight)
+            {
+                WalkRight();
+
+            }
+
         }
 
         #endregion
@@ -187,6 +203,7 @@ namespace JuniorProject_01
 
                         Vector3 jumpdirection = new Vector3(-1, 2, 0).normalized;
                         rb.AddForce(jumpdirection * jumpForce);
+                        anim.SetTrigger("jump");
 
                     }
 
@@ -195,6 +212,8 @@ namespace JuniorProject_01
 
                         Vector3 jumpdirection = new Vector3(1, 2, 0).normalized;
                         rb.AddForce(jumpdirection * jumpForce);
+                        anim.SetTrigger("jump");
+
                     }
                 }
 
@@ -206,6 +225,8 @@ namespace JuniorProject_01
                     {
                         curentJumpCount--;
                         rb.AddForce(transform.up * jumpForce);
+                        anim.SetTrigger("jump");
+
                     }
                 }
             }
@@ -214,27 +235,29 @@ namespace JuniorProject_01
             {
                 curentJumpCount--;
                 rb.AddForce(transform.up * jumpForce);
+                anim.SetTrigger("jump");
+
             }
         }
 
         public void OnAir()
         {
             inAir = true;
+
         }
 
         public void OnFlore(float velocity)
         {
             inAir = false;
             curentJumpCount = jumpsCount;
+            anim.SetTrigger("land");
 
-            if(velocity<velocityToDamage)
+            if (velocity<velocityToDamage)
             {
                 float damage = 0-(velocity - velocityToDamage);
                 player.GetDamage(damage);
             }
         }
-
-
 
     }
 

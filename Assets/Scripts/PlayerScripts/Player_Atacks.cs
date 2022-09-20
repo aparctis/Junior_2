@@ -12,6 +12,8 @@ namespace JuniorProject_01
         [SerializeField] private Player_moves moves;
         [SerializeField] private Transform castPoint;
 
+        [SerializeField] private Animator anim;
+
 
         [SerializeField] private Button but_fire;
         [SerializeField] private Button but_water;
@@ -155,13 +157,21 @@ namespace JuniorProject_01
         {
             if (onCoolDown_fire == false)
             {
-                CheckAtackDirection();
-                proj = Instantiate(fireball_, castPoint.position, Quaternion.identity) as GameObject;
-                proj.GetComponent<Fireball_imidiate>().Fire(atackDirection);
-                CoolDownStart_fire();
+                anim.SetTrigger("spell_fire");
+
+                Invoke("Fireball_forInvoke", 0.2f);
             }
 
 
         }
+
+        private void Fireball_forInvoke()
+        {
+            CheckAtackDirection();
+            proj = Instantiate(fireball_, castPoint.position, Quaternion.identity) as GameObject;
+            proj.GetComponent<Fireball_imidiate>().Fire(atackDirection);
+            CoolDownStart_fire();
+        }
+
     }
 }
