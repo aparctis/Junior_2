@@ -66,6 +66,8 @@ namespace JuniorProject_01
             //Chacking walk function on keyboard
             WalkControl_();
 
+
+
         }
         #region rotate
 
@@ -221,7 +223,7 @@ namespace JuniorProject_01
                 {
                     Debug.Log("Wall NOT found");
 
-                    if (curentJumpCount > 0)
+                    if (curentJumpCount > 1)
                     {
                         curentJumpCount--;
                         rb.AddForce(transform.up * jumpForce);
@@ -243,18 +245,28 @@ namespace JuniorProject_01
         public void OnAir()
         {
             inAir = true;
-
+            anim.SetTrigger("fly");
         }
 
-        public void OnFlore(float velocity)
+        //Animation after falling
+        public void OnFlore()
         {
             inAir = false;
             curentJumpCount = jumpsCount;
             anim.SetTrigger("land");
 
-            if (velocity<velocityToDamage)
+
+        }
+
+        //Damage after falling
+        public void ReportFlore()
+        {
+            float velocity = rb.velocity.y;
+
+
+            if (velocity < velocityToDamage)
             {
-                float damage = 0-(velocity - velocityToDamage);
+                float damage = 0 - (velocity - velocityToDamage);
                 player.GetDamage(damage);
             }
         }

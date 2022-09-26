@@ -36,7 +36,7 @@ namespace JuniorProject_01
 
         private void OnEnable()
         {
-            Debug.Log("Pooled fireball enable");
+            //Debug.Log("Pooled fireball enable");
         }
 
         private void OnDisable()

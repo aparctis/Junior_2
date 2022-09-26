@@ -17,6 +17,9 @@ namespace JuniorProject_01
         private float curentHeatPoints;
         [SerializeField] private float maxHeatPoints = 100;
         [SerializeField ]private int lives = 1;
+        private bool m_Alive = true;
+        public bool isAlive => m_Alive;
+
 
         //bonus shield
         private bool gatShield = false;
@@ -28,6 +31,8 @@ namespace JuniorProject_01
         [SerializeField]private Slider _hpSlider;
 
         //death and respawn
+        public bool damageAble = true;
+
         private Vector3 checkPoint;
         [SerializeField] private GameObject gameOverScreen;
         [SerializeField] private GameObject levelDoneScreen;
@@ -35,7 +40,8 @@ namespace JuniorProject_01
         //magic
         [SerializeField] private Player_Atacks atack;
 
-
+        //Animations (hit)
+        [SerializeField] private Animator anim;
 
 
         private void Start()
@@ -71,11 +77,25 @@ namespace JuniorProject_01
         //hp and damage
         public void GetDamage(float damage)
         {
-            Debug.Log("GetDamage: " + damage);
+            if (isAlive)
+            {
+                if (damageAble)
+                {
+                    Debug.Log("GetDamage: " + damage);
 
-            curentHeatPoints -= damage;
-            if (curentHeatPoints <= 0) Death();
-            HpSliderUpdate();
+                    curentHeatPoints -= damage;
+                    if (curentHeatPoints <= 0) Death();
+                    HpSliderUpdate();
+                    anim.SetTrigger("hit");
+                }
+
+                else
+                {
+                    Debug.Log("NOT GetDamage: " + damage);
+
+                }
+
+            }
         }
 
         public void Heal(float heal)
@@ -88,6 +108,9 @@ namespace JuniorProject_01
 
         private void Death()
         {
+            anim.SetBool("isDead", true);
+            anim.SetTrigger("dye");
+            m_Alive = false;
             lives--;
             if (lives <= 0)
             {
@@ -104,6 +127,9 @@ namespace JuniorProject_01
         {
             curentHeatPoints = maxHeatPoints;
             transform.position = checkPoint;
+            anim.SetBool("isDead", false);
+            m_Alive = true;
+
 
         }
 
@@ -154,6 +180,7 @@ namespace JuniorProject_01
         {
             gameOverScreen.SetActive(true);
             moves.moveAble = false;
+            anim.SetBool("isDead", true);
 
         }
 

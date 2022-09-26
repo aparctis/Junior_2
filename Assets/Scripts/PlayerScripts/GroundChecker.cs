@@ -21,8 +21,9 @@ namespace JuniorProject_01
                 m_onFlore = true;
                 if (hasRB && rb != null)
                 {
+                    player.OnFlore(/*rb.velocity.y*/);
+
                     Debug.Log("Velocity - " + rb.velocity.y);
-                    player.OnFlore(rb.velocity.y);
                 }
 
             }

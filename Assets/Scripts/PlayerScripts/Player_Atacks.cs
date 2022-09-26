@@ -14,11 +14,19 @@ namespace JuniorProject_01
 
         [SerializeField] private Animator anim;
 
-
+        //UI
         [SerializeField] private Button but_fire;
         [SerializeField] private Button but_water;
         [SerializeField] private Button but_wind;
         [SerializeField] private Button but_earth;
+
+        private Image im_fire;
+        private Image im_water;
+        private Image im_wind;
+        private Image im_earth;
+
+
+        public float amountFire = Mathf.Clamp01(0);
 
         [SerializeField] private bool fireAble;
         [SerializeField] private bool waterAble;
@@ -47,12 +55,18 @@ namespace JuniorProject_01
         {
             atackDirection = Vector3.right;
 
+            //initialize buttons images
+            InitButtons();
+
         }
 
         // Update is called once per frame
         void Update()
         {
             CoolDown_fire();
+
+            //UI update
+            ButtonsAmountUpdate();
         }
         #endregion
 
@@ -171,6 +185,23 @@ namespace JuniorProject_01
             proj = Instantiate(fireball_, castPoint.position, Quaternion.identity) as GameObject;
             proj.GetComponent<Fireball_imidiate>().Fire(atackDirection);
             CoolDownStart_fire();
+        }
+
+
+        //buttons and UI
+        private void InitButtons()
+        {
+            im_fire = but_fire.image;
+            im_water = but_water.image;
+            im_earth = but_earth.image;
+            im_wind = but_wind.image;
+
+        }
+
+        private void ButtonsAmountUpdate()
+        {
+            im_fire.fillAmount = amountFire;
+
         }
 
     }

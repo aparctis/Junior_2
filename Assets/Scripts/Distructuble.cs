@@ -6,7 +6,7 @@ namespace JuniorProject_01
 {
     public class Distructuble : MonoBehaviour
     {
-        [SerializeField] private float heatPoints;
+        [SerializeField] internal float heatPoints;
 
 
         public virtual void GetDamage(float damage)
