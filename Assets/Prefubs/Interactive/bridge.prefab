@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2334422353329106525}
   - component: {fileID: 2334422353329106524}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Stairs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2334422353886073350}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: bridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 2334422354123087267}
   - component: {fileID: 2334422354123087276}
   - component: {fileID: 2334422354123087277}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: platform (6)
   m_TagString: Flore
   m_Icon: {fileID: 0}
@@ -187,7 +187,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2334422354551575319}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: position
   m_TagString: Untagged
   m_Icon: {fileID: 0}

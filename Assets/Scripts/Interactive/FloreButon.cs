@@ -52,7 +52,7 @@ namespace JuniorProject_01
                     }
                     break;
                 case 2:
-                    transform.position = Vector3.MoveTowards(transform.position, posUp, moveSpeed * Time.fixedDeltaTime);
+                    transform.position = Vector3.MoveTowards(transform.position, posUp, (moveSpeed/2) * Time.fixedDeltaTime);
                     if (transform.position == posUp)
                     {
                         moveStatus = 0;

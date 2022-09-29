@@ -25,8 +25,15 @@ namespace JuniorProject_01
         private Image im_wind;
         private Image im_earth;
 
+        //Button Amount
+        public float amountFire = Mathf.Clamp01(1);
+        public float amountWater = Mathf.Clamp01(1);
+        public float amountEarth = Mathf.Clamp01(1);
+        public float amountWind = Mathf.Clamp01(1);
 
-        public float amountFire = Mathf.Clamp01(0);
+
+
+
 
         [SerializeField] private bool fireAble;
         [SerializeField] private bool waterAble;
@@ -48,6 +55,12 @@ namespace JuniorProject_01
         private float currentCoolDown_fireball = 0f;
         private bool onCoolDown_fire = false;
 
+
+        //Rune parts
+        private int runeCount_fire = 0;
+        private int runeCount_earth = 0;
+        private int runeCount_wind = 0;
+        private int runeCount_water = 0;
 
 
         #region Unity Events
@@ -117,6 +130,8 @@ namespace JuniorProject_01
             if (onCoolDown_fire)
             {
                 currentCoolDown_fireball -= Time.deltaTime;
+                amountFire += (Time.deltaTime/fireball_coolDown);
+
                 if (currentCoolDown_fireball <= 0)
                 {
                     Reload_fire();
@@ -127,7 +142,11 @@ namespace JuniorProject_01
         private void CoolDownStart_fire()
         {
             but_fire.interactable = false;
+            amountFire = 0;
+            im_fire.fillAmount = amountFire;
             onCoolDown_fire = true;
+
+
         }
 
         private void Reload_fire()
@@ -140,43 +159,21 @@ namespace JuniorProject_01
         }
 
 
-        //Atack with loading
-        public void FireBall_AtackDown()
-        {
-            CheckAtackDirection();
-            moves.moveAble = false;
-            if (fireAble)
-            {
-                proj = Instantiate(fireball_loading, castPoint.position, Quaternion.identity) as GameObject;
-                proj.GetComponent<Fireball>().SetDirection(atackDirection);
-            }
-        }
-
-        public void FireBall_AtackUp()
-        {
-            moves.moveAble = true;
-
-            if (fireAble)
-            {
-                if (proj != null && proj.GetComponent<Fireball>() != null)
-                {
-                    proj.GetComponent<Fireball>().Fire(atackDirection);
-
-                }
-            }
-        }
 
         //imidiate atack
         public void FireBall_Atack()
         {
-            if (onCoolDown_fire == false)
+            if (fireAble)
             {
-                anim.SetTrigger("spell_fire");
 
-                Invoke("Fireball_forInvoke", 0.2f);
+                if (onCoolDown_fire == false)
+                {
+                    anim.SetTrigger("spell_fire");
+
+                    Invoke("Fireball_forInvoke", 0.2f);
+
+                }
             }
-
-
         }
 
         private void Fireball_forInvoke()
@@ -185,6 +182,7 @@ namespace JuniorProject_01
             proj = Instantiate(fireball_, castPoint.position, Quaternion.identity) as GameObject;
             proj.GetComponent<Fireball_imidiate>().Fire(atackDirection);
             CoolDownStart_fire();
+
         }
 
 
@@ -201,8 +199,12 @@ namespace JuniorProject_01
         private void ButtonsAmountUpdate()
         {
             im_fire.fillAmount = amountFire;
-
+            im_earth.fillAmount = amountEarth;
+            im_water.fillAmount = amountWater;
+            im_wind.fillAmount = amountWind;
         }
+
+
 
     }
 }

@@ -11,7 +11,7 @@ namespace JuniorProject_01
 
         //jump force
         private int velocityModifyer = 1100;
-        private float maxJumpForce = 20000.0f;
+        [SerializeField]private float maxJumpForce = 20000.0f;
         private float minJumpForce = 7000.0f;
 
         private float currentForce;

@@ -26,6 +26,7 @@ namespace JuniorProject_01
         private float shieldTime = 0f;
         private float resist = 0f;
         private float maxResist = 0.9f;
+        [SerializeField] private GameObject shieldObject;
 
         //UI
         [SerializeField]private Slider _hpSlider;
@@ -40,6 +41,13 @@ namespace JuniorProject_01
         //magic
         [SerializeField] private Player_Atacks atack;
 
+        private int runeCollectedOnLevel;
+        [SerializeField] int haveToCollect = 3;
+        [SerializeField] WeaponeType runeTypeOnLevel;
+        [SerializeField] private TextMeshProUGUI runeText;
+        [HideInInspector] public bool allRunesCollected = false;
+
+
         //Animations (hit)
         [SerializeField] private Animator anim;
 
@@ -52,26 +60,42 @@ namespace JuniorProject_01
 
             HpSliderUpdate();
 
+            //checking if player gat shield
+            if (!gatShield) shieldObject.SetActive(false);
+            else shieldObject.SetActive(true);
+
         }
 
         private void Update()
         {
-            
+            ShieldTimer();
         }
 
 
         //Weapones & atack
 
-
-
-        public void AddCrystal(WeaponeType type)
+        public void ActivateRune()
         {
-            atack.NewRune(type);
+            if (runeCollectedOnLevel == haveToCollect)
+            {
+                atack.NewRune(runeTypeOnLevel);
+            }
         }
 
-        //fire atack
+        public void AddCrystal()
+        {
+            runeCollectedOnLevel++;
+            RuneTextUpdate();
+            if (runeCollectedOnLevel == haveToCollect)
+            {
+                allRunesCollected = true;
+            }
+        }
 
-
+        private void RuneTextUpdate()
+        {
+            runeText.text = ("x " + runeCollectedOnLevel + "/3");
+        }
 
 
         //hp and damage
@@ -83,7 +107,7 @@ namespace JuniorProject_01
                 {
                     Debug.Log("GetDamage: " + damage);
 
-                    curentHeatPoints -= damage;
+                    ShieldCheck(damage);
                     if (curentHeatPoints <= 0) Death();
                     HpSliderUpdate();
                     anim.SetTrigger("hit");
@@ -153,6 +177,22 @@ namespace JuniorProject_01
             }
         }
 
+        private void ShieldCheck(float clearDamage)
+        {
+            if (gatShield)
+            {
+                float trueDamage = clearDamage - (clearDamage * resist);
+                curentHeatPoints -= trueDamage;
+            }
+            else
+            {
+                curentHeatPoints -= clearDamage;
+
+            }
+
+
+        }
+
         private void DropShild()
         {
             gatShield = false;
@@ -161,7 +201,14 @@ namespace JuniorProject_01
 
         private void ShieldTimer()
         {
-
+            if (gatShield)
+            {
+                shieldTime -= Time.deltaTime;
+                if (shieldTime <= 0)
+                {
+                    DropShild();
+                }
+            }
         }
 
 

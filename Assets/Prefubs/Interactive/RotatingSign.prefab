@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2654211941265648471}
   - component: {fileID: 2654211941265648470}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 2654211941907456495}
   - component: {fileID: 2654211941907456480}
   - component: {fileID: 2654211941907456483}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RotatingSign
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,6 +164,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: c9b02959d9925c841a53742a92ad54aa, type: 3}
       propertyPath: m_Name
       value: Arrow (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c9b02959d9925c841a53742a92ad54aa, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c9b02959d9925c841a53742a92ad54aa, type: 3}
       propertyPath: m_RootOrder

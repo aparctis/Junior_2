@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1332265494119499098}
   - component: {fileID: 1332265494119499100}
   - component: {fileID: 1332265494119499101}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: darkness
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1332265494652002166}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: buttons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1332265494701225619}
   - component: {fileID: 1332265494701225618}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: hidenCave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1332265494764682314}
   - component: {fileID: 1332265494764682317}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: wall_down
   m_TagString: Flore
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1332265495119296094}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: signs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +259,7 @@ GameObject:
   - component: {fileID: 1332265496072606918}
   - component: {fileID: 1332265496072606919}
   - component: {fileID: 1332265496072606916}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: wall
   m_TagString: Flore
   m_Icon: {fileID: 0}
@@ -500,6 +500,10 @@ PrefabInstance:
     - target: {fileID: 1000012311334760, guid: d22a13d412c7e174282729c232d0292b, type: 3}
       propertyPath: m_Name
       value: Blocks And Bricks 12 One Sided
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000012311334760, guid: d22a13d412c7e174282729c232d0292b, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4000011384875320, guid: d22a13d412c7e174282729c232d0292b, type: 3}
       propertyPath: m_RootOrder

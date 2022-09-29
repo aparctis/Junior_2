@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2435437626314597592}
   - component: {fileID: 2435437626314597593}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FloatingPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2435437626480680111}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: downPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2435437626485740402}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: floatPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 2435437627702553775}
   - component: {fileID: 2435437627702553769}
   - component: {fileID: 2435437627702553768}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: statusChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2435437627765706976}
   - component: {fileID: 2435437627765706977}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: platform
   m_TagString: Flore
   m_Icon: {fileID: 0}
@@ -269,9 +269,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3687216690005246820, guid: 1ca8bff6c59b16549ac56ac53ed681b6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867293131383094, guid: 1ca8bff6c59b16549ac56ac53ed681b6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1ca8bff6c59b16549ac56ac53ed681b6, type: 3}
       propertyPath: m_Name
       value: simplePlatform
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1ca8bff6c59b16549ac56ac53ed681b6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3345077528798092320, guid: 1ca8bff6c59b16549ac56ac53ed681b6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3775044714108394485, guid: 1ca8bff6c59b16549ac56ac53ed681b6, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ca8bff6c59b16549ac56ac53ed681b6, type: 3}

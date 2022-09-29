@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 333202502814086286}
   - component: {fileID: 333202502814086273}
   - component: {fileID: 333202502814086272}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: wall
   m_TagString: Flore
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 333202502877078907}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: fallingBridge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   m_Component:
   - component: {fileID: 333202503679969431}
   - component: {fileID: 333202503679969428}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,6 +176,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 2572880133610634216}
+  changengeViewForAction: 0
+  changeViewActionDelay: 1.5
+  changeViewTime: 3.5
 --- !u!1001 &333202502285743680
 PrefabInstance:
   m_ObjectHideFlags: 0

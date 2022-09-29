@@ -14,6 +14,14 @@ namespace JuniorProject_01
         [SerializeField] Rigidbody rb;
         [SerializeField] private Player_moves player;
 
+        private bool isGrounded;
+        public LayerMask Flore;
+
+        private void Update()
+        {
+            GroundChack();
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.tag.Equals("Flore"))
@@ -21,9 +29,8 @@ namespace JuniorProject_01
                 m_onFlore = true;
                 if (hasRB && rb != null)
                 {
-                    player.OnFlore(/*rb.velocity.y*/);
+                    player.OnFlore();
 
-                    Debug.Log("Velocity - " + rb.velocity.y);
                 }
 
             }
@@ -38,9 +45,21 @@ namespace JuniorProject_01
         {
             if (other.gameObject.tag.Equals("Flore"))
             {
-                m_onFlore = false;
-                player.OnAir();
+                if (!isGrounded)
+                {
+                    player.OnAir();
+
+                }
+
+                //Invoke("GroundCheck", 0.1f);
             }
+        }
+
+
+
+        private void GroundChack()
+        {
+            isGrounded = Physics.CheckSphere(transform.position, 0.2f, Flore);  
         }
     }
 

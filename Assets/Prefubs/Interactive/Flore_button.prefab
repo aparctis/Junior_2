@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5492690771682426187}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Flore_button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 4581495303037622476}
   - component: {fileID: 6795971654042290725}
   - component: {fileID: 2822474045109710248}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 4417736233429669428}
   - component: {fileID: 6049500019904854234}
   - component: {fileID: 2394795078524822602}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Flore
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4122868313372033149}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: panel_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,7 +236,7 @@ GameObject:
   - component: {fileID: 7564157082279386451}
   - component: {fileID: 8607981334799940262}
   - component: {fileID: 2300436478906114657}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,6 +331,10 @@ PrefabInstance:
     - target: {fileID: 1000012591900880, guid: 5cb3998e6b112124586bcb9d411696c2, type: 3}
       propertyPath: m_Name
       value: Idol 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000012591900880, guid: 5cb3998e6b112124586bcb9d411696c2, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1000012591900880, guid: 5cb3998e6b112124586bcb9d411696c2, type: 3}
       propertyPath: m_StaticEditorFlags

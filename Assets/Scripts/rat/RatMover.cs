@@ -18,7 +18,7 @@ namespace JuniorProject_01
         private float runSpeed = 10.0f;
         private int lookAtX = 1;
         private float modelAngle = 0f;
-        private float patrolDistance = 3f;
+        [SerializeField]private float patrolDistance = 3f;
         
         private float initX;
         private float maxX;

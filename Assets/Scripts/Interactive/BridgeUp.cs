@@ -11,6 +11,11 @@ namespace JuniorProject_01
         private bool startMove = false;
         private float speed = 2f;
 
+        //Able/disable camera chenge ciew function
+        [SerializeField] private bool changengeViewForAction = false;
+        [SerializeField] private float changeViewActionDelay = 1.5f;
+        [SerializeField] private float changeViewTime = 3.5f;
+
         private void Start()
         {
             InitButton(StartMove);
@@ -26,7 +31,25 @@ namespace JuniorProject_01
 
         public void StartMove()
         {
+            if (changengeViewForAction)
+            {
+
+                CameraControl.singleCamera.ViewChangeStart(gameObject.transform, changeViewTime);
+                Invoke("Action", changeViewActionDelay);
+
+            }
+
+            else
+            {
+                Action();
+            }
+        }
+
+
+        private void Action()
+        {
             startMove = true;
+
         }
 
     }

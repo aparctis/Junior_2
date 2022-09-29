@@ -20,6 +20,16 @@ namespace JuniorProject_01
         //switch camera move ability
         [SerializeField]private bool followPlayer = true;
 
+        //singleton part
+        public static CameraControl singleCamera;
+
+        //change view
+        private Transform currentTarget;
+        private bool tmpTarget = false;
+        private float tmpTimer = 0;
+
+        [SerializeField] private Player_moves player_moves;
+
 
         private void Awake()
         {
@@ -27,9 +37,19 @@ namespace JuniorProject_01
             defaultSpeed = cameraMoveSpeed;
         }
 
+
+        //Test 
+        private void Start()
+        {
+            if (singleCamera == null) singleCamera = this;
+            currentTarget = playerTracker;
+        }
+
         private void FixedUpdate()
         {
-            Vector3 newPos = new Vector3(playerTracker.position.x, playerTracker.position.y, cameraDistance);
+            CameraMan();
+
+            Vector3 newPos = new Vector3(currentTarget.position.x, currentTarget.position.y, cameraDistance);
 
             if (followPlayer)
             {
@@ -57,18 +77,50 @@ namespace JuniorProject_01
             {
                 transform.position = newPos;
             }
+
         }
 
         private void  OfsetCheck()
         {
 
-            float x = (playerTracker.position.x - transform.position.x);
-            float y = (playerTracker.position.y - transform.position.y);
+            float x = (currentTarget.position.x - transform.position.x);
+            float y = (currentTarget.position.y - transform.position.y);
 
             float sqd = (x * x) + (y * y);
 
             ofset = Mathf.Sqrt(sqd);
         }
+
+
+        //View Change
+        public void ViewChangeStart(Transform newViewTarget, float timeToLoock)
+        {
+            currentTarget = newViewTarget;
+            tmpTimer = timeToLoock;
+            tmpTarget = true;
+            player_moves.moveAble = false;
+        }
+
+        private void ViewChangeOver()
+        {
+            currentTarget = playerTracker;
+            player_moves.moveAble = true;
+            tmpTarget = false;
+
+        }
+
+        private void CameraMan()
+        {
+            if (tmpTarget)
+            {
+                tmpTimer -= Time.fixedDeltaTime;
+                if (tmpTimer <= 0)
+                {
+                    ViewChangeOver();
+                }
+            }
+        }
+
 
     }
 }

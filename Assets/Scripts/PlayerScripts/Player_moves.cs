@@ -18,8 +18,7 @@ namespace JuniorProject_01
 
         //RidgidBody
         [HideInInspector]public Rigidbody rb;
-/*        [SerializeField] private float thrust;
-*/        
+        
         [SerializeField] private float jumpForce = 11000;
 
         //NoRB
@@ -42,6 +41,8 @@ namespace JuniorProject_01
         private int lookAtX = 1;
         public int lookDirectionX => lookAtX;
         private float modelAngle = 0;
+
+
 
         //Unity Events
         void Start()
@@ -83,19 +84,7 @@ namespace JuniorProject_01
 
         #endregion
 
-        #region phisic walk(disable)
-        //walk part (with rb)
-        /*        private void GoRight()
-                {
-                    rb.AddForce(transform.right * thrust);
-                }
 
-                private void GoLeft()
-                {
-                    rb.AddForce(transform.right * -thrust);
-
-                }*/
-        #endregion
 
         //walk with NO phisics
         public void WalkRight()
@@ -135,13 +124,11 @@ namespace JuniorProject_01
             if (Input.GetKey(KeyCode.RightArrow))
             {
                 WalkRight();
-                //GoRight();
             }
 
             if (Input.GetKey(KeyCode.LeftArrow))
             {
                 WalkLeft();
-                //GoLeft();
             }
 
 
@@ -270,6 +257,8 @@ namespace JuniorProject_01
                 player.GetDamage(damage);
             }
         }
+
+
 
     }
 

@@ -6,7 +6,15 @@ namespace JuniorProject_01
 {
     public class FallingBridge : ActionCaller
     {
+
         private bool startRotate = false;
+
+        private bool isOpen = false;
+
+        //Able/disable camera chenge ciew function
+        [SerializeField] private bool changengeViewForAction = false;
+        [SerializeField] private float changeViewActionDelay = 1.5f;
+        [SerializeField] private float changeViewTime = 3.5f;
 
         void Start()
         {
@@ -17,7 +25,28 @@ namespace JuniorProject_01
         {
             if (startRotate)
             {
-                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, -90), Time.fixedDeltaTime);
+                if (isOpen)
+                {
+                    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, 0), Time.fixedDeltaTime);
+
+                    if (transform.eulerAngles.z > 359)
+                    {
+                        startRotate = false;
+                        isOpen = false;
+                    }
+                }
+
+                else
+                {
+
+                    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, -90), Time.fixedDeltaTime);
+
+                    if (transform.eulerAngles.z < 271)
+                    {
+                        startRotate = false;
+                        isOpen = true;
+                    }
+                }
 
             }
 
@@ -26,7 +55,24 @@ namespace JuniorProject_01
 
         public void StartRotate()
         {
+            if (changengeViewForAction)
+            {
+
+                CameraControl.singleCamera.ViewChangeStart(gameObject.transform, changeViewTime);
+                Invoke("Action", changeViewActionDelay);
+
+            }
+
+            else
+            {
+                Action();
+            }
+        }
+
+        private void Action()
+        {
             startRotate = true;
+
         }
     }
 }
