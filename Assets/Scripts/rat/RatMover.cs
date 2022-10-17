@@ -15,7 +15,7 @@ namespace JuniorProject_01
 
         //walk and run
         private float walkSpeed = 2.0f;
-        private float runSpeed = 10.0f;
+        private float runSpeed = 7.5f;
         private int lookAtX = 1;
         private float modelAngle = 0f;
         [SerializeField]private float patrolDistance = 3f;
@@ -39,6 +39,8 @@ namespace JuniorProject_01
         private float atackCoolDown = 2f;
         private float coolDown;
         
+        //UI and HP
+
 
         //action status
         private bool isAlive = true;
@@ -57,6 +59,11 @@ namespace JuniorProject_01
             waitTimer = waitTime;
 
             coolDown = atackCoolDown;
+
+            maxHP = heatPoints;
+            UiUpdate();
+
+
         }
 
 
@@ -74,9 +81,13 @@ namespace JuniorProject_01
 
         public override void GetDamage(float damage)
         {
+            Debug.Log("Rat damaged");
+
             if (isAlive)
             {
                 heatPoints -= damage;
+                UiUpdate();
+
                 if (heatPoints <= 0)
                 {
                     Death();
@@ -314,5 +325,21 @@ namespace JuniorProject_01
         {
             zone.DamagePlayer(damage);
         }
+
+        //UI
+
+        internal virtual void UiUpdate()
+        {
+            if (hpSlider != null)
+            {
+
+                float newHP = (hpSlider.maxValue / maxHP) * heatPoints;
+                hpSlider.value = newHP;
+
+
+            }
+
+        }
+
     }
 }

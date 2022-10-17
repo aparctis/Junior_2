@@ -170,6 +170,7 @@ MonoBehaviour:
   startAction: 0
   darkness: {fileID: 1332265494119499099}
   lightSpeed: 1
+  darkMaterial: {fileID: 2100000, guid: a9df5259239ca014d8b7c9954e6d28a6, type: 2}
   wall: {fileID: 1332265496072606914}
   wallDown: {fileID: 1332265494764682314}
   wallSpeed: 2

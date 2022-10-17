@@ -51,6 +51,10 @@ namespace JuniorProject_01
         //Animations (hit)
         [SerializeField] private Animator anim;
 
+        //Advices on Level
+        private bool advicesAble = true;
+        private bool startAdvice = true;
+        [SerializeField]private float adviceDelay = 2f;
 
         private void Start()
         {
@@ -64,6 +68,17 @@ namespace JuniorProject_01
             if (!gatShield) shieldObject.SetActive(false);
             else shieldObject.SetActive(true);
 
+
+            //adice
+            if (advicesAble&&startAdvice)
+            {
+                Invoke("StartAdvice", adviceDelay);
+                    
+            }
+            else
+            {
+                Debug.Log("No advices");
+            }
         }
 
         private void Update()
@@ -88,6 +103,7 @@ namespace JuniorProject_01
             RuneTextUpdate();
             if (runeCollectedOnLevel == haveToCollect)
             {
+                MainMenu.singletonMenu.CallAdvice(1);
                 allRunesCollected = true;
             }
         }
@@ -183,10 +199,13 @@ namespace JuniorProject_01
             {
                 float trueDamage = clearDamage - (clearDamage * resist);
                 curentHeatPoints -= trueDamage;
+
+                BloodScreen.singleton.Bleed(trueDamage);
             }
             else
             {
                 curentHeatPoints -= clearDamage;
+                BloodScreen.singleton.Bleed(clearDamage);
 
             }
 
@@ -246,7 +265,11 @@ namespace JuniorProject_01
             levelDoneScreen.SetActive(true);
         }
 
+        private void StartAdvice()
+        {
+            MainMenu.singletonMenu.CallAdvice(0);
 
+        }
 
 
     }

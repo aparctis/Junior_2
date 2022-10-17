@@ -12,6 +12,9 @@ namespace JuniorProject_01
         [SerializeField] private GameObject darkness;
         [SerializeField] private float lightSpeed;
         private Vector3 darknessPos;
+        [SerializeField]private Material darkMaterial;
+        private Color dark = new Color(1,1,1,1);
+
 
         //wall
         [SerializeField] private GameObject wall;
@@ -27,8 +30,11 @@ namespace JuniorProject_01
 
         void Start()
         {
-            darknessPos = new Vector3(darkness.transform.position.x, darkness.transform.position.y, (darkness.transform.position.z+3.1f));
-            
+            darknessPos = new Vector3(darkness.transform.position.x, darkness.transform.position.y, (darkness.transform.position.z+9f));
+
+            //color
+            darkMaterial.color = Color.black;
+            dark = darkMaterial.color;
 
         }
 
@@ -43,7 +49,11 @@ namespace JuniorProject_01
 
         private void LightOn()
         {
-            darkness.transform.position = Vector3.MoveTowards(darkness.transform.position, darknessPos, lightSpeed * Time.fixedDeltaTime);
+            //            darkness.transform.position = Vector3.MoveTowards(darkness.transform.position, darknessPos, lightSpeed * Time.fixedDeltaTime);
+
+            dark.a -= 0.01f;
+            darkMaterial.color = dark;
+            Debug.Log(dark.a);
         }
 
         private void WallDown()

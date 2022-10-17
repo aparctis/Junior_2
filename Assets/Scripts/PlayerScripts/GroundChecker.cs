@@ -14,7 +14,7 @@ namespace JuniorProject_01
         [SerializeField] Rigidbody rb;
         [SerializeField] private Player_moves player;
 
-        private bool isGrounded;
+        public bool isGrounded;
         public LayerMask Flore;
 
         private void Update()
@@ -45,7 +45,7 @@ namespace JuniorProject_01
         {
             if (other.gameObject.tag.Equals("Flore"))
             {
-                if (!isGrounded)
+                if (!isGrounded && rb.velocity.y!=0)
                 {
                     player.OnAir();
 
@@ -61,6 +61,9 @@ namespace JuniorProject_01
         {
             isGrounded = Physics.CheckSphere(transform.position, 0.2f, Flore);  
         }
+
+
+
     }
 
 }

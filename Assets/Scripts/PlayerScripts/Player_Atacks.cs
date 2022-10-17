@@ -14,6 +14,8 @@ namespace JuniorProject_01
 
         [SerializeField] private Animator anim;
 
+        private AudioSource source;
+
         //UI
         [SerializeField] private Button but_fire;
         [SerializeField] private Button but_water;
@@ -48,6 +50,7 @@ namespace JuniorProject_01
         private GameObject proj;
         [SerializeField] GameObject fireball_loading;
         [SerializeField] GameObject fireball_;
+        [SerializeField] AudioClip fireballLounchSound;
 
 
         //cooldown
@@ -71,6 +74,7 @@ namespace JuniorProject_01
             //initialize buttons images
             InitButtons();
 
+            source = GetComponent<AudioSource>();
         }
 
         // Update is called once per frame
@@ -90,6 +94,8 @@ namespace JuniorProject_01
                 case WeaponeType.fire:
                     fireAble = true;
                     ButtonCheck();
+
+                    CoolDownStart_fire();
                     break;
                 case WeaponeType.water:
                     waterAble = true;
@@ -145,6 +151,7 @@ namespace JuniorProject_01
             amountFire = 0;
             im_fire.fillAmount = amountFire;
             onCoolDown_fire = true;
+            currentCoolDown_fireball = fireball_coolDown;
 
 
         }
@@ -169,19 +176,21 @@ namespace JuniorProject_01
                 if (onCoolDown_fire == false)
                 {
                     anim.SetTrigger("spell_fire");
-
-                    Invoke("Fireball_forInvoke", 0.2f);
+                    CoolDownStart_fire();
 
                 }
             }
         }
 
-        private void Fireball_forInvoke()
+        public void Fireball_forInvoke()
         {
             CheckAtackDirection();
             proj = Instantiate(fireball_, castPoint.position, Quaternion.identity) as GameObject;
             proj.GetComponent<Fireball_imidiate>().Fire(atackDirection);
-            CoolDownStart_fire();
+
+            //sound of fireball
+            source.clip = fireballLounchSound;
+            source.Play();
 
         }
 

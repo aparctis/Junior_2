@@ -18,6 +18,10 @@ namespace JuniorProject_01
 
         public Action pressAction;
 
+        private bool isReadyToUse = true;
+        [SerializeField]private float buttonCooldown = 5.0f;
+        private float defoultCooldown;
+
 
 
 
@@ -27,11 +31,15 @@ namespace JuniorProject_01
             //positions initialization
             posUp = transform.position;
             posDown = platform_2.position;
+
+            //set defoult cooldown
+            defoultCooldown = buttonCooldown;
         }
 
         void FixedUpdate()
         {
             MoveUpdate();
+            CooldownTimer();
         }
         #endregion
 
@@ -78,7 +86,7 @@ namespace JuniorProject_01
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.tag.Equals("Player"))
+            if (other.gameObject.tag.Equals("Player")&&isReadyToUse)
             {
                 if (moveStatus == 0)
                 {
@@ -91,6 +99,19 @@ namespace JuniorProject_01
         public void InitializeAction(Action a)
         {
             pressAction = a;
+        }
+
+        private void CooldownTimer()
+        {
+            if (!isReadyToUse)
+            {
+                buttonCooldown -= Time.fixedDeltaTime;
+                if (buttonCooldown <= 0)
+                {
+                    buttonCooldown = defoultCooldown;
+                    isReadyToUse = true;
+                }
+            }
         }
 
     }

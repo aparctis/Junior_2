@@ -32,8 +32,13 @@ namespace JuniorProject_01
 
         //jumps
         private bool inAir = false;
+        private bool jumpAble = true;
+        private float jumpCD = 0.5f;
+        private float jumpTimer;
+
         private int jumpsCount = 1;
         private int curentJumpCount;
+        [SerializeField] private GroundChecker groundChecker;
 
         [SerializeField] private WallChecker wallChecker;
 
@@ -67,7 +72,7 @@ namespace JuniorProject_01
             //Chacking walk function on keyboard
             WalkControl_();
 
-
+            if (!jumpAble) JumpAbleTimer();
 
         }
         #region rotate
@@ -87,22 +92,22 @@ namespace JuniorProject_01
 
 
         //walk with NO phisics
-        public void WalkRight()
+        public void WalkRight(float JuysticSpeed)
         {
             lookAtX = 1;
             if (moveAble)
             {
-                transform.Translate(Vector3.right * (moveSpeed * Time.fixedDeltaTime));
+                transform.Translate(Vector3.right * (moveSpeed * Time.fixedDeltaTime * JuysticSpeed));
 
             }
             if (!isRuning) isRuning = true;
         }
-        public void WalkLeft()
+        public void WalkLeft(float JuysticSpeed)
         {
             lookAtX = -1;
             if (moveAble)
             {
-                transform.Translate(Vector3.right * (-moveSpeed * Time.fixedDeltaTime));
+                transform.Translate(Vector3.right * (-moveSpeed * Time.fixedDeltaTime* JuysticSpeed));
 
             }
             if (!isRuning) isRuning = true;
@@ -123,12 +128,12 @@ namespace JuniorProject_01
             //keyHold
             if (Input.GetKey(KeyCode.RightArrow))
             {
-                WalkRight();
+                WalkRight(1);
             }
 
             if (Input.GetKey(KeyCode.LeftArrow))
             {
-                WalkLeft();
+                WalkLeft(1);
             }
 
 
@@ -164,12 +169,12 @@ namespace JuniorProject_01
         {
             if (moveLeft)
             {
-                WalkLeft();
+                WalkLeft(1);
 
             }
             else if (moveRight)
             {
-                WalkRight();
+                WalkRight(1);
 
             }
 
@@ -182,7 +187,7 @@ namespace JuniorProject_01
         {
             if (inAir)
             {
-                Debug.Log("Wall check");
+/*                Debug.Log("Wall check");
                 if (wallChecker.WallJumpAble)
                 {
                     Debug.Log("Wall found");
@@ -217,15 +222,39 @@ namespace JuniorProject_01
                         anim.SetTrigger("jump");
 
                     }
-                }
+                }*/
             }
 
             else
             {
-                curentJumpCount--;
-                rb.AddForce(transform.up * jumpForce);
-                anim.SetTrigger("jump");
+                if (moveAble && jumpAble)
+                {
+                    if (groundChecker.isGrounded)
+                    {
+                        curentJumpCount--;
+                        rb.AddForce(transform.up * jumpForce);
+                        anim.SetTrigger("jump");
 
+
+                        JumpTimerStart();
+                    }
+                }
+
+            }
+        }
+
+        private void JumpTimerStart()
+        {
+            jumpTimer = jumpCD;
+            jumpAble = false;
+        }
+
+        private void JumpAbleTimer()
+        {
+            jumpTimer -= Time.fixedDeltaTime;
+            if (jumpTimer <= 0)
+            {
+                jumpAble = true;
             }
         }
 
@@ -238,11 +267,12 @@ namespace JuniorProject_01
         //Animation after falling
         public void OnFlore()
         {
-            inAir = false;
-            curentJumpCount = jumpsCount;
-            anim.SetTrigger("land");
-
-
+            if (inAir)
+            {
+                inAir = false;
+                curentJumpCount = jumpsCount;
+                anim.SetTrigger("land");
+            }
         }
 
         //Damage after falling

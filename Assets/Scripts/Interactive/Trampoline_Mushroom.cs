@@ -19,9 +19,14 @@ namespace JuniorProject_01
         private Rigidbody playerRB = null;
         private Player_moves mover = null;
 
+        //damage enemys
+        [SerializeField] private EnemyCrusher crusher;
+
         private void StartAnimation()
         {
             anim.SetTrigger("jump");
+
+
         }
 
         private void ResetProps()
@@ -33,11 +38,15 @@ namespace JuniorProject_01
 
         public void Lounch()
         {
+
+
             if (playerRB != null)
             {
                 playerRB.AddForce(Vector3.up * currentForce);
                 mover.OnAir();
             }
+
+
         }
 
         private void OnTriggerEnter(Collider other)
@@ -65,6 +74,20 @@ namespace JuniorProject_01
                 ResetProps();
             }
 
+        }
+
+
+        public void CrushEnemysUnderMushroom()
+        {
+            if (crusher != null)
+            {
+                crusher.DamageEnemys();
+
+            }
+
+            else
+            {
+            }
         }
 
     }

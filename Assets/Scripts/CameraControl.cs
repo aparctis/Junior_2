@@ -31,6 +31,9 @@ namespace JuniorProject_01
         [SerializeField] private Player_moves player_moves;
 
 
+        //test view
+        [SerializeField]private float offset_y_with_angle = 5.0f;
+
         private void Awake()
         {
             cameraDistance = transform.position.z;
@@ -49,7 +52,7 @@ namespace JuniorProject_01
         {
             CameraMan();
 
-            Vector3 newPos = new Vector3(currentTarget.position.x, currentTarget.position.y, cameraDistance);
+            Vector3 newPos = new Vector3(currentTarget.position.x, (currentTarget.position.y+ offset_y_with_angle), cameraDistance);
 
             if (followPlayer)
             {

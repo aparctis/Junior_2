@@ -660,7 +660,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 591367057}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -717,7 +717,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0ecea82952a27be4bb3e9050fb53939c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0d4789cd46b30d349bc89f9b00328c8b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -844,6 +844,7 @@ GameObject:
   - component: {fileID: 702290522}
   - component: {fileID: 702290521}
   - component: {fileID: 702290520}
+  - component: {fileID: 702290523}
   m_Layer: 5
   m_Name: b_newGame
   m_TagString: Untagged
@@ -890,7 +891,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -947,7 +948,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1321c865b24a9b242be968d360e6c8ac, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cbba740763d046d46a0d30311fec5870, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -965,6 +966,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 702290518}
   m_CullTransparentMesh: 1
+--- !u!95 &702290523
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 702290518}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d9b2bb7f038592c44b1f472209e9b67d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1039442180
 GameObject:
   m_ObjectHideFlags: 0
@@ -1252,6 +1273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f5d05431c2108642bf6a0265498681c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  advices: []
 --- !u!4 &1393356751
 Transform:
   m_ObjectHideFlags: 0
@@ -1581,7 +1603,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1858607835
 RectTransform:
   m_ObjectHideFlags: 0

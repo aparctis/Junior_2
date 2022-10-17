@@ -8,19 +8,37 @@ namespace JuniorProject_01
     {
         [SerializeField] private GameObject runeAnimation;
 
-        private void OnCollisionEnter(Collision collision)
+        private bool wasntCall = true;
+
+
+        private void OnTriggerEnter(Collider other)
         {
-            if (collision.gameObject.tag.Equals("Player"))
+            if (other.gameObject.tag.Equals("Player"))
             {
-                if (collision.gameObject.GetComponent<PlayerController>().allRunesCollected)
+                if (other.gameObject.GetComponent<PlayerController>().allRunesCollected)
                 {
-                    collision.gameObject.GetComponent<PlayerController>().ActivateRune();
-                    if (runeAnimation != null)
+                    if (wasntCall)
                     {
-                        runeAnimation.SetActive(true);
+                        other.gameObject.GetComponent<PlayerController>().ActivateRune();
+                        if (runeAnimation != null)
+                        {
+                            runeAnimation.SetActive(true);
+
+                        }
+
+                        Invoke("ActivationWithDelay", 1.0f);
                     }
+
                 }
             }
+        }
+
+        private void ActivationWithDelay()
+        {
+            MainMenu.singletonMenu.CallAdvice(2);
+            wasntCall = false;
+
+
         }
 
     }

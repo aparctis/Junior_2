@@ -1,5 +1,109 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4178465778605159082
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9218841817015068710}
+  - component: {fileID: 2515691101171533678}
+  m_Layer: 3
+  m_Name: EnemyCrusher
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &9218841817015068710
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4178465778605159082}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6341111823296857821}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2515691101171533678
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4178465778605159082}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.1117866, y: 0.087849036, z: 0.96863556}
+  m_Center: {x: 0.026839636, y: 1.0230807, z: -0.3177952}
+--- !u!1 &6051479654458718213
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3202637995052707788}
+  - component: {fileID: 3418224776167244476}
+  - component: {fileID: 2766064513747287815}
+  m_Layer: 0
+  m_Name: EnemyCrusher
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3202637995052707788
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6051479654458718213}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.55, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6341111824086616634}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3418224776167244476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6051479654458718213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3e0f68bc23f7c14c85cb0c4ea826fad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageToEnemys: 100
+--- !u!65 &2766064513747287815
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6051479654458718213}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.180341, y: 1.0552467, z: 5.0514317}
+  m_Center: {x: -0.35910416, y: 0.0276234, z: 1.473247}
 --- !u!1 &6341111824086616613
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,7 +116,7 @@ GameObject:
   - component: {fileID: 6341111824086616633}
   - component: {fileID: 6341111824086616632}
   - component: {fileID: 6341111824086616635}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Trampoline_Mushroom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32,6 +136,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6341111823296857821}
+  - {fileID: 3202637995052707788}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -69,6 +174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 6341111824086616633}
   maxJumpForce: 20000
+  crusher: {fileID: 3418224776167244476}
 --- !u!65 &6341111824086616635
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -123,15 +229,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b6aa70d22c31d124d839f7a4e821e341, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b6aa70d22c31d124d839f7a4e821e341, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b6aa70d22c31d124d839f7a4e821e341, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b6aa70d22c31d124d839f7a4e821e341, type: 3}
       propertyPath: m_LocalPosition.x
@@ -217,19 +323,18 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.47, y: 0.61, z: 2.24}
-  m_Center: {x: 0, y: 1.28, z: 0.16}
---- !u!136 &6341111822108697575
-CapsuleCollider:
+  m_Size: {x: 2.47, y: 0.5105475, z: 2.24}
+  m_Center: {x: 5.574403e-10, y: 1.3297268, z: 0.16000004}
+--- !u!114 &5944406882987045551
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6341111823296895741}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.19
-  m_Height: 1.38
-  m_Direction: 1
-  m_Center: {x: 0.01, y: 0.43, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3e0f68bc23f7c14c85cb0c4ea826fad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageToEnemys: 200

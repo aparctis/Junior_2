@@ -81,6 +81,8 @@ namespace JuniorProject_01
             else
             {
                 Invoke("WrongPosition", 1f);
+                if (rotatedTimes == 5) rotatedTimes = 1;
+
             }
         }
 

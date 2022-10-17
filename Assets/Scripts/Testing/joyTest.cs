@@ -16,15 +16,21 @@ namespace JuniorProject_01
         {
             if (joystick.Direction.x != 0)
             {
+
+                //
+
                 if (anim.GetBool("isRun") != true) anim.SetBool("isRun", true);
 
                 if (joystick.Direction.x > 0)
                 {
-                    moves.WalkRight();
+                    moves.WalkRight(joystick.Direction.x);
+                    anim.speed = (joystick.Direction.x);
                 }
                 if (joystick.Direction.x < 0)
                 {
-                    moves.WalkLeft();
+                    moves.WalkLeft(-joystick.Direction.x);
+                    anim.speed = (-joystick.Direction.x);
+
 
                 }
 
@@ -34,6 +40,8 @@ namespace JuniorProject_01
             else
             {
                 anim.SetBool("isRun", false);
+                anim.speed = 1;
+
             }
         }
     }
